@@ -1,23 +1,26 @@
 #
 # Conditional build:
 %bcond_without  dist_kernel     	# allow non-distribution kernel
-%define	no_install_post_strip	1
-
-%define	_rel	0.1
-
+#
 Summary:	Open Source Line Echo Canceller (OSLEC)
+Summary(pl.UTF-8):	Open Source Line Echo Canceller (OSLEC) - usuwanie echa
 Name:		oslec
 Version:	20070608
-Release:	%{_rel}
+%define	rel	0.1
+Release:	%{rel}
 License:	GPL v2
 Group:		Applications/System
 Source0:	%{name}-%{version}.tar.bz2
 # Source0-md5:	1fb5834740944a4ded9ce2556da63ff3
 URL:		http://www.rowetel.com/ucasterisk/oslec.html
-Requires:	dialog
+%if %{with dist_kernel}
 BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.20.2
+%endif
 BuildRequires:	rpmbuild(macros) >= 1.379
+Requires:	dialog
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		no_install_post_strip	1
 
 %description
 Oslec is an open source high performance line echo canceller. It works
@@ -25,10 +28,17 @@ well on lines where the built-in Zaptel echo canceller fails. No
 tweaks like rxgain/txgain or fxotrain are required. Oslec is supplied
 as GPL licensed C source code and is free as in speech.
 
+%description -l pl.UTF-8
+Oslec to mający otwarte źródła i wysoką wydajność moduł do usuwania
+echa z linii. Działa dobrze na liniach, na których zawodzi wbudowane
+narzędzie Zaptela do usuwania echa. Nie są wymagane sztuczki typu
+rxgain/txgain czy fxotrain. Oslec jest wolnodostępny, rozpowszechniany
+na licencji GPL z kodem źródłowym w C.
+
 %package -n kernel%{_alt_kernel}-misc-oslec
 Summary:	oslec - Linux kernel module
 Summary(pl.UTF-8):	oslec - moduł jądra Linuksa
-Release:	%{_rel}@%{_kernel_ver_str}
+Release:	%{rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 %{?with_dist_kernel:%requires_releq_kernel}
 License:	GPL v2
