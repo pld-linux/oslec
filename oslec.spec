@@ -5,13 +5,13 @@
 Summary:	Open Source Line Echo Canceller (OSLEC)
 Summary(pl.UTF-8):	Open Source Line Echo Canceller (OSLEC) - usuwanie echa
 Name:		oslec
-Version:	20070608
+Version:	20070701
 %define	rel	0.1
 Release:	%{rel}
 License:	GPL v2
 Group:		Applications/System
 Source0:	%{name}-%{version}.tar.bz2
-# Source0-md5:	1fb5834740944a4ded9ce2556da63ff3
+# Source0-md5:	81ac01d9584907c8335ff8d9b61de848
 URL:		http://www.rowetel.com/ucasterisk/oslec.html
 %if %{with dist_kernel}
 BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.20.2
