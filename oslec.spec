@@ -20,8 +20,6 @@ BuildRequires:	rpmbuild(macros) >= 1.379
 Requires:	dialog
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		no_install_post_strip	1
-
 %description
 Oslec is an open source high performance line echo canceller. It works
 well on lines where the built-in Zaptel echo canceller fails. No
