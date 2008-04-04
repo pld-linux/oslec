@@ -40,9 +40,9 @@ Summary:	oslec - Linux kernel module
 Summary(pl.UTF-8):	oslec - moduł jądra Linuksa
 Release:	%{rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
-%{?with_dist_kernel:%requires_releq_kernel}
 License:	GPL v2
 Requires(post,postun):	/sbin/depmod
+%{?with_dist_kernel:Requires:	kernel%{_alt_kernel}(vermagic) = %{_kernel_ver}}
 Requires:	module-init-tools >= 3.2.2-2
 
 %description -n kernel%{_alt_kernel}-misc-oslec
