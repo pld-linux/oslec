@@ -2,7 +2,7 @@
 # Conditional build:
 %bcond_without  dist_kernel     	# allow non-distribution kernel
 #
-%define	rel	1
+%define		rel	1
 Summary:	Open Source Line Echo Canceller (OSLEC)
 Summary(pl.UTF-8):	Open Source Line Echo Canceller (OSLEC) - usuwanie echa
 Name:		oslec
@@ -18,6 +18,8 @@ BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.20.2
 %endif
 BuildRequires:	rpmbuild(macros) >= 1.379
 Requires:	dialog
+# build broken (ppc, sparc) or nothing built (alpha)
+ExcludeArch:	ppc sparc alpha
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
