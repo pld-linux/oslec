@@ -2,11 +2,11 @@
 # Conditional build:
 %bcond_without  dist_kernel     	# allow non-distribution kernel
 #
+%define	rel	1
 Summary:	Open Source Line Echo Canceller (OSLEC)
 Summary(pl.UTF-8):	Open Source Line Echo Canceller (OSLEC) - usuwanie echa
 Name:		oslec
 Version:	20070701
-%define	rel	0.1
 Release:	%{rel}
 License:	GPL v2
 Group:		Applications/System
