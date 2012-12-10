@@ -1,0 +1,35 @@
+diff -urN oslec-0.2.org/kernel/Makefile oslec-0.2/kernel/Makefile
+--- oslec-0.2.org/kernel/Makefile	2008-09-25 01:17:32.000000000 +0200
++++ oslec-0.2/kernel/Makefile	2012-12-10 15:25:32.309572923 +0100
+@@ -6,7 +6,7 @@
+ # Version 2
+ 
+ ifeq ($(ARCH), blackfin)
+-EXTRA_CFLAGS    := -Idrivers/zaptel/oslec/kernel -Idrivers/zaptel/oslec/spandsp-0.0.3/src/spandsp -D__BLACKFIN__ -D__BLACKFIN_ASM__ -O6 -DEXPORT_SYMTAB
++ccflags-y	:= -Idrivers/zaptel/oslec/kernel -Idrivers/zaptel/oslec/spandsp-0.0.3/src/spandsp -D__BLACKFIN__ -D__BLACKFIN_ASM__ -O6 -DEXPORT_SYMTAB
+ obj-$(CONFIG_OSLEC)        += oslec.o
+ 
+ oslec-objs := oslec_wrap.o \
+@@ -15,11 +15,11 @@
+ else
+ 
+ UNAME := $(shell uname -r)
+-KERNEL26 := 2.6
++KERNEL26 := 3
+ KERNELVERSION := $(findstring $(KERNEL26),$(UNAME))
+ PWD := $(shell pwd)
+ 
+-ifeq ($(KERNELVERSION),2.6)
++ifeq (y,y)
+ 
+ obj-m	:= oslec.o
+ 
+@@ -39,7 +39,7 @@
+ 
+ INCLUDE	:= -I/lib/modules/`uname -r`/build/include -I/usr/include/asm/mach-default/
+ INCLUDE	+= -I../spandsp-0.0.3/src/spandsp -I.
+-CFLAGS	:= -O2 -Wall -DMODULE -D__KERNEL__ -DLINUX
++ccflags-y	:= -O2 -Wall -DMODULE -D__KERNEL__ -DLINUX
+ CC	:= gcc
+ 
+ all:: oslec.o

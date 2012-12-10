@@ -12,6 +12,7 @@ License:	GPL v2
 Group:		Applications/System
 Source0:	 http://www.rowetel.com/ucasterisk/downloads/%{name}-%{version}.tar.gz
 # Source0-md5:	554a0d44d2b4bac27ca1cc29fc55f69b
+Patch0:		%{name}-build.patch
 URL:		http://www.rowetel.com/ucasterisk/oslec.html
 %if %{with dist_kernel}
 BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.20.2
@@ -53,6 +54,8 @@ oslec - moduł jądra Linuksa.
 
 %prep
 %setup -q
+%patch0 -p1
+
 sed -i "s|#include <echo.h>|#include <$PWD/spandsp-0.0.3/src/spandsp/echo.h>|" kernel/oslec_wrap.c
 
 %build
